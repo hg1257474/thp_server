@@ -1,0 +1,50 @@
+body {
+  background: white;
+}
+
+address {
+  color: white;
+  background-color: #024784;
+  position: absolute;
+  transform: translateY(-50%);
+  width: 600px;
+  line-height: 47px;
+}
+
+address img {
+  vertical-align: text-bottom;
+  margin: 0 19px 0 84px;
+}
+
+main {
+  color: #024784;
+}
+
+main dt {
+  font-weight: bolder;
+}
+
+main dl {
+  font-size: 20px;
+}
+
+main dl div {
+  float: left;
+  width: 240px;
+}
+
+main dd {
+  margin: 0 0 6px 0;
+}
+
+main dt:nth-of-type(2) {
+  margin: 34px 0 14px 0;
+}
+
+main .mobilephone {
+  font-size: 55px;
+  font-family: 'BauerBodoniBT';
+  text-align: right;
+  font-style: italic;
+  line-height: 3.175;
+}

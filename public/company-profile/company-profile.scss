@@ -1,0 +1,22 @@
+article {
+  & > * {
+    float: left;
+  }
+  & > img {
+    margin: 54px 50px 0 0;
+  }
+  & > h1 {
+    color: #014684;
+    font-size: 35px;
+    margin-top: 84px;
+  }
+  main {
+    margin-top: 30px;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+    color: rgb(64, 64, 64);
+    line-height: 1.857;
+    width: 700px;
+    height: 351px;
+  }
+}

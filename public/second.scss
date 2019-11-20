@@ -1,0 +1,66 @@
+body {
+  background: #f4f4f4;
+  text-align: center;
+}
+body > main {
+  background: white;
+  text-align: center;
+  padding-bottom: 100px;
+  width: 100%;
+  max-width: 1312px;
+  display: inline-block;
+}
+.banner {
+  width: 1920px;
+  margin: 0 -100%;
+}
+body > main > div {
+  width: 1200px;
+  display: inline-block;
+}
+body > main > div > header {
+  position: relative;
+  height: 104px;
+  border-bottom: 1px solid #bbbbbb;
+}
+hgroup {
+  position: absolute;
+  left: 25px;
+  bottom: 16px;
+  > * {
+    display: inline-block;
+  }
+  h4 {
+    font-weight: normal;
+    font-size: 30px;
+  }
+  h5 {
+    font-weight: normal;
+    font-size: 18px;
+  }
+}
+.router {
+  position: absolute;
+  right: 55px;
+  bottom: 16px;
+  font-size: 16px;
+}
+.pagination {
+  margin-top: 45px;
+  li {
+    &.selected,
+    button:hover {
+      color: white;
+      background: #014684;
+    }
+    button {
+      border: 1px solid #e5e5e5;
+      padding: 0 10px;
+
+      cursor: pointer;
+      background: white;
+      line-height: 34px;
+    }
+    display: inline-block;
+  }
+}

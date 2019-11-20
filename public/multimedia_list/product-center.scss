@@ -1,0 +1,35 @@
+article {
+  li {
+    float: left;
+  }
+  figure {
+    margin: 0;
+    margin-right: 15px;
+  }
+  figcaption {
+    font-size: 14px;
+    line-height: 50px;
+  }
+  ul {
+    margin-top: 45px;
+  }
+}
+.pagination {
+  margin-top: 45px;
+  li {
+    &.selected,
+    button:hover {
+      color: white;
+      background: #014684;
+    }
+    button {
+      border: 1px solid #e5e5e5;
+      padding: 0 10px;
+
+      cursor: pointer;
+      background: white;
+      line-height: 34px;
+    }
+    display: inline-block;
+  }
+}

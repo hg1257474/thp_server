@@ -1,0 +1,66 @@
+body > main > div > ul {
+  padding: 35px 0 70px;
+  .time {
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    background: white;
+    margin: 0 21px;
+    float: left;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+    color: rgb(1, 70, 132);
+
+    div {
+      font-size: 25px;
+      line-height: 50px;
+    }
+  }
+
+  h5 {
+    font-size: 16px;
+    font-family: 'Microsoft YaHei';
+    color: rgb(55, 55, 55);
+    font-weight: bold;
+    float: left;
+
+    margin: 0 0 11px;
+  }
+
+  li {
+    width: 600px;
+    height: 80px;
+    margin-top: 40px;
+    padding: 15px 0;
+    float: left;
+  }
+
+  main {
+    float: left;
+    font-size: 14px;
+    font-family: 'Microsoft YaHei';
+    color: rgb(115, 115, 115);
+    line-height: 1.2;
+    width: 434px;
+    height: 3.6em;
+    overflow: hidden;
+  }
+
+  .newest,
+  li:hover {
+    background: #014684;
+
+    main {
+      color: white;
+    }
+
+    h5 {
+      color: white;
+    }
+
+    .time {
+      background: #dec996;
+      color: black;
+    }
+  }
+}

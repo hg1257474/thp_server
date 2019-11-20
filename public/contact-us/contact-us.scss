@@ -1,0 +1,43 @@
+body {
+  background: white;
+}
+address {
+  color: white;
+  background-color: rgb(2, 71, 132);
+  position: absolute;
+  transform: translateY(-50%);
+  width: 600px;
+  line-height: 47px;
+
+  img {
+    vertical-align: text-bottom;
+    margin: 0 19px 0 84px;
+  }
+}
+main {
+  color: #024784;
+  dt {
+    font-weight: bolder;
+  }
+
+  dl {
+    font-size: 20px;
+    div {
+      float: left;
+      width: 240px;
+    }
+  }
+  dd {
+    margin: 0 0 6px 0;
+  }
+  dt:nth-of-type(2) {
+    margin: 34px 0 14px 0;
+  }
+  .mobilephone {
+    font-size: 55px;
+    font-family: 'BauerBodoniBT';
+    text-align: right;
+    font-style: italic;
+    line-height: 3.175;
+  }
+}

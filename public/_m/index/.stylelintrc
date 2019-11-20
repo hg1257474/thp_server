@@ -1,0 +1,6 @@
+{
+  "configBasedir": "C:UsersAdministratorAppDataRoaming\npm\node_modules",
+  "extends": [
+    "stylelint-prettier/recommended"
+  ]
+}

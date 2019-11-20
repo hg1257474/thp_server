@@ -1,0 +1,123 @@
+<html>
+    <head>
+        <base href="{$Request.domain}/_m/{$dir}"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <script>
+            document.documentElement.style.fontSize = Math.ceil(document.documentElement.clientWidth / 7.2) + "px";
+            window.onresize = function () {
+                document.documentElement.style.fontSize = Math.ceil(document.documentElement.clientWidth / 7.2) + "px";
+            }
+            function onChangeNavShow() {
+                var nav = document.querySelector("body>header ul")
+                nav.style.display = nav.style.display == "none"
+                    ? "block"
+                    : "none"
+            }
+        </script>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <link rel="stylesheet" type="text/css" href="/_m/app.css"/>
+    </head>
+    <body>
+        <header>牡丹江市宏达碳化硼有限公司<button onclick="onChangeNavShow()"><img src="/image/option.png"/></button>
+            <nav>
+                <ul style="display:none">
+                    <li class="selected">
+                        <a href="/m">首页</a>
+                    </li>
+                    <li>
+                        <a href="/m/company_profile">公司简介</a>
+                    </li>
+                    <li>
+                        <a href="/m/product_center">
+                                产品中心</a>
+                    </li>
+                    <li>
+                        <a href="/m/product_specification">产品规格</a>
+                    </li>
+                    <li>
+                        <a href="/m/news_center">新闻中心</a>
+                    </li>
+                    <li>
+                        <a href="/m/general_knowledge_encyclopedia">常识百科</a>
+                    </li>
+                    <li>
+                        <a href="/m/honorary_qualification">荣誉资质</a>
+                    </li>
+
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <hgroup>
+                <h3>{$name[0]}</h3>
+                <h4>{$name[1]}</h4>
+            </hgroup>
+            <ul>
+                <li class="clear-float">
+                    <div class="time">
+                        <div>10</div>2019-10</div>
+                    <h6>碳化硼在耐火材料中的应用</h6>
+                    <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
+分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
+                </li>
+                <li class="clear-float">
+                    <div class="time">
+                        <div>10</div>2019-10</div>
+                    <h6>碳化硼在耐火材料中的应用</h6>
+                    <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
+分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
+                </li>
+                <li class="clear-float">
+                    <div class="time">
+                        <div>10</div>2019-10</div>
+                    <h6>碳化硼在耐火材料中的应用</h6>
+                    <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
+分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
+                </li>
+                <li class="clear-float newest">
+                    <div class="time">
+                        <div>10</div>2019-10</div>
+                    <h6>碳化硼在耐火材料中的应用</h6>
+                    <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
+分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
+                </li>
+            </ul>
+        </main>
+        <footer>
+            <img src="/image/phone-number.png"/>
+            <dl>
+                <div class="clear-float">
+                    <dt ><img src="/image/fax.png"/></dt>
+                    <dt>传真</dt>
+                    <dd>0453-6889078 </dd>
+                </div>
+                <div class="clear-float">
+                    <dt class="clear-float"><img src="/image/qq.png"/></dt>
+                    <dt>QQ号</dt>
+                    <dd>28619270 </dd>
+                </div>
+                <div class="clear-float">
+                    <dt class="clear-float"><img src="/image/contact.png"/></dt>
+                    <dt>联系人</dt>
+                    <dd>侯经理 </dd>
+                </div>
+                <div class="clear-float">
+                    <dt class="clear-float"><img src="/image/website.png"/></dt>
+                    <dt>网址</dt>
+                    <dd>www.hdthp.com </dd>
+                </div>
+                <div class="clear-float">
+                    <dt class="clear-float"><img src="/image/mail.png"/></dt>
+                    <dt>邮箱</dt>
+                    <dd>663814@qq.com</dd>
+                </div>
+                <div class="clear-float">
+                    <dt class="clear-float"><img src="/image/mail.png"/></dt>
+                    <dt>邮箱</dt>
+                    <dd>mdjhdthp@163.com</dd>
+                </div>
+            </dl>
+            <p>版权所有：牡丹江宏达碳化硼  技术支持：牡丹江艺通网络</p>
+        </footer>
+    </body>
+</html>

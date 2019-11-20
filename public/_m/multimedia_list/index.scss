@@ -1,0 +1,46 @@
+$font-color: #014684;
+
+$bgcolor-white: #f2f2f2;
+%center-inlineblock {
+  display: inline-block;
+  margin: 0 auto;
+}
+%a-clear {
+  text-decoration: none;
+  color: inherit;
+}
+%button-clear {
+  display: inline-block;
+  border: 0;
+  background: transparent;
+
+  padding: 0;
+}
+body {
+  background: $bgcolor-white;
+}
+li {
+  list-style: none;
+}
+.clear-float:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+body > main {
+  text-align: center;
+  background: $bgcolor-white;
+  ul {
+    padding-left: 0.4rem;
+  }
+  li {
+    line-height: 0.6rem;
+    img {
+      width: 3.1rem;
+    }
+    font-size: 0.26rem;
+    background: white;
+    float: left;
+    margin: 0.17rem 0.2rem 0 0;
+  }
+}

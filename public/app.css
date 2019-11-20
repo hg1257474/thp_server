@@ -1,0 +1,175 @@
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+body > main {
+  margin-top: 98px;
+}
+
+h1,
+body,
+h4,
+h5,
+ul {
+  margin: 0;
+}
+
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.clear-float:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.center {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+body > header {
+  z-index: 10;
+  line-height: 98px;
+  position: fixed;
+  background: #ecf3f9;
+  top: 0;
+  width: 100%;
+}
+
+body > header > div {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+body > header h1 {
+  float: left;
+  font-size: 34px;
+}
+
+body > header nav {
+  float: right;
+  font-size: 16px;
+}
+
+body > header li {
+  float: right;
+  height: 98px;
+  position: relative;
+  padding: 0 15px;
+}
+
+body > header li.selected, body > header li:hover {
+  background: #2c72b1;
+}
+
+body > header li.selected a, body > header li:hover a {
+  color: white;
+}
+
+body > header li.selected:before, body > header li:hover:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-style: solid;
+  border-width: 98px 15px 0 0;
+  border-color: #ecf3f9 #2c72b1 transparent transparent;
+}
+
+body > header li.selected:after, body > header li:hover:after {
+  content: '';
+  position: absolute;
+  right: 0;
+  border-style: solid;
+  border-width: 0 0 98px 15px;
+  border-color: transparent transparent #ecf3f9 #2c72b1;
+}
+
+body > footer {
+  overflow: hidden;
+  background: #015cb5;
+  color: white;
+  background-image: url(index-6.png);
+}
+
+body > footer > div:nth-of-type(1) {
+  text-align: center;
+  max-width: 1200px;
+  position: relative;
+  margin: 0 auto;
+  height: 252px;
+}
+
+body > footer > div:nth-of-type(2) {
+  background: black;
+  color: white;
+}
+
+body > footer > div > * {
+  display: inline-block;
+}
+
+body > footer > div > div:nth-of-type(1) {
+  text-align: center;
+}
+
+body > footer .mobilephone {
+  font-size: 55px;
+  font-family: 'BauerBodoniBT';
+  color: white;
+  font-style: italic;
+  line-height: 3.175;
+}
+
+body > footer ul {
+  float: left;
+  position: relative;
+  transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  left: 0;
+}
+
+body > footer li {
+  margin-bottom: 15px;
+}
+
+body > footer li img,
+body > footer li span {
+  float: left;
+}
+
+body > footer li img {
+  width: 25px;
+  margin-right: 23px;
+}
+
+body > footer .wechat-consult {
+  position: absolute;
+  width: 280px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+body > footer .wechat-consult p {
+  margin: 0;
+}
+
+body > footer .wechat-consult div {
+  padding: 20px 20px 0 0;
+}
+
+body > footer .wechat-consult > * {
+  float: right;
+}

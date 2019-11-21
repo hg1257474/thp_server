@@ -4,7 +4,7 @@ namespace app\admin\model;
 
 use think\Model;
 
-class User extends Model
+class Admin extends Model
 {
     protected function initialize()
     {

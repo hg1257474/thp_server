@@ -15,7 +15,7 @@ return [
     ],
     '[admin]' => [
 
-        'login' => 'admin/index/index'
+        '' => 'admin/index/index'
     ],
     '[m]' => [
         '/product_center' => 'm/index/product_center',

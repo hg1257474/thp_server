@@ -7,7 +7,34 @@ use app\admin\model\Admin;
 use think\Controller;
 use think\Request;
 use think\Session;
+use app\common\model\ProductCenter;
+use app\common\model\ProductSpecification;
+use app\common\model\NewsCenter;
+use app\common\model\HonoraryQualification;
+use app\common\model\GeneralKnowledgeEncyclopedia;
 
+function get_model($type, $target, $args)
+{
+
+    switch ($type) {
+        case 'product_center':
+            if ($target == 'where') return ProductCenter::where(...$args);
+            else return new ProductCenter($args);
+        case 'product_specification':
+            if ($target == 'where')
+                return ProductSpecification::where(...$args);
+            else return new ProductSpecification($args);
+        case 'news_center':
+            if ($target == 'where') return NewsCenter::where(...$args);
+            else return new NewsCenter($args);
+        case 'honorary_qualification':
+            if ($target == 'where') return HonoraryQualification::where(...$args);
+            else return new HonoraryQualification($args);
+        case 'general_knowledge_encyclopedia':
+            if ($target == 'where') return GeneralKnowledgeEncyclopedia::where(...$args);
+            else return new GeneralKnowledgeEncyclopedia($args);
+    }
+}
 class Index extends Controller
 {
     protected $beforeActionList = [
@@ -15,6 +42,8 @@ class Index extends Controller
     ];
     protected function authorization_validation()
     {
+
+        return true;
         $req = Request::instance();
         if (!(($req->isPost() && $req->baseUrl() == '/admin/login') || Session::has('id'))) {
             echo "*(*(";
@@ -23,23 +52,57 @@ class Index extends Controller
             exit;
         }
     }
-
-    public function index()
+    public function category_curd()
     {
+        // $list = Admin::where('id', '<', '10')->paginate(10);
+        // dump($list);
+        $req = Request::instance();
+        if (!array_key_exists('is_from_api', $req->param())) return view('/index');
+        switch ($req->method()) {
+            case 'GET':
+                $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10);
+                if (array_search($req->param()['target'], ['product_center', 'product_specification']))
+                    $list = $list->column('name,id');
+                else $list = $list->column('name,id,created_at');
+                return $list;
+            case 'POST':
+                $item = get_model($req->param()['target'], '', $req->post());
+                $item->save();
+                return "success";
+        }
+    }
+    public function item_curd()
+    {
+        dump(Request::instance()->param());
+    }
+    public function login()
+    {
+
         $req = Request::instance();
         // dump($req->post(false)['username']);
         // dump($req->post('username'));
         $admin = Admin::get(['username' => $req->post('username'), 'password' => $req->post('password')]);
         // dump($admin);
+        // echo ("dsdsd");
+        // return 11;
+        if ($req->method() != "POST") return view('/login');
         if (!$admin) {
             header("HTTP/1.1 403 Forbidden");
             exit;
         } else {
-            echo "dsds@@@@@@@@";
-            Session::set("is", $admin->id);
-            header('HTTP/1.1 303 See Other'); //发出301头部
-            header('Location:' . $req->domain() . '/admin/product_center'); //跳转到带www的网址
-            exit;
+            Session::set("id", $admin->id);
+            // header('HTTP/1.1 303 See Other'); //发出301头部
+            // header('Location:' . $req->domain() . '/admin/product_center'); //跳转到带www的网址
+            return "success";
+            // exit;
         }
+    }
+    public function index()
+    {
+        $req = Request::instance();
+        header('HTTP/1.1 302 Move Temporarily'); //发出301头部
+        $target = Session::has('id') ? 'product_center' : 'login';
+        header('Location:' . $req->domain() . '/admin/' . $target);
+        exit;
     }
 }

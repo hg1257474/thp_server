@@ -8,14 +8,22 @@
 // +----------------------------------------------------------------------
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
-
+$target_range = "/^((product_center)|(product_specification)|(news_center)|(honorary_qualification)|(general_knowledge_encyclopedia))$/";
 return [
     '__pattern__' => [
         'name' => '\w+',
     ],
     '[admin]' => [
+        '/:target' => [
+            'admin/index/category_curd', [], ['target' => $target_range]
+        ],
+        '/:target/:id' => [
+            'admin/index/item_curd', [], ['target' => $target_range]
+        ],
+        '/login' => 'admin/index/login',
+        '__miss__' => 'admin/index/index',
 
-        '' => 'admin/index/index'
+
     ],
     '[m]' => [
         '/product_center' => 'm/index/product_center',

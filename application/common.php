@@ -10,3 +10,12 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
+use think\Request;
+
+function check_url()
+{
+    // dump(Request::instance()->param());
+
+    // dump(Request::instance());
+    return false;
+}

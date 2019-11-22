@@ -12,13 +12,14 @@ use app\common\model\ProductSpecification;
 use app\common\model\NewsCenter;
 use app\common\model\HonoraryQualification;
 use app\common\model\GeneralKnowledgeEncyclopedia;
+use think\Db;
 
 function get_model($type, $target, $args)
 {
 
     switch ($type) {
         case 'product_center':
-            if ($target == 'where') return ProductCenter::where(...$args);
+            if ($target == 'where') return ProductCenter::query($args);
             else return new ProductCenter($args);
         case 'product_specification':
             if ($target == 'where')
@@ -60,11 +61,17 @@ class Index extends Controller
         if (!array_key_exists('is_from_api', $req->param())) return view('/index');
         switch ($req->method()) {
             case 'GET':
-                $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10);
-                if (array_search($req->param()['target'], ['product_center', 'product_specification']))
-                    $list = $list->column('name,id');
-                else $list = $list->column('name,id,created_at');
-                return $list;
+                // $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10)->select('id name description');
+                // $list=get_model($req->param()['target'], 'where','select * from '
+                $start=(string)10*($req->param()['current']-1);
+                $sql="select id,name from ".$req->param()['target']." order by id desc limit ".$start.",10";
+                $sql2="select count(*) from ".$req->param()['target'];
+                // dump(Db::query($sql2));
+                return json(['content'=>Db::query($sql),'size'=>Db::query($sql2)[0]['count(*)']]);
+                // if (!array_search($req->param()['target'], ['product_center', 'product_specification']))
+                //     $list = $list->column('name,id');
+                // else $list = $list->column('name,id,created_at');
+                // dump($list);
             case 'POST':
                 $item = get_model($req->param()['target'], '', $req->post());
                 $item->save();

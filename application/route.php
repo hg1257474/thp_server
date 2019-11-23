@@ -14,13 +14,14 @@ return [
         'name' => '\w+',
     ],
     '[admin]' => [
-        '/:target' => [
-            'admin/index/category_curd', [], ['target' => $target_range]
-        ],
+        '/login' => 'admin/index/login',
         '/:target/:id' => [
             'admin/index/item_curd', [], ['target' => $target_range]
         ],
-        '/login' => 'admin/index/login',
+        '/:target' => [
+            'admin/index/category_curd', [], ['target' => $target_range]
+        ],
+
         '__miss__' => 'admin/index/index',
 
 

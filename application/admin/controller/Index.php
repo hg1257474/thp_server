@@ -63,11 +63,11 @@ class Index extends Controller
             case 'GET':
                 // $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10)->select('id name description');
                 // $list=get_model($req->param()['target'], 'where','select * from '
-                $start=(string)10*($req->param()['current']-1);
-                $sql="select id,name from ".$req->param()['target']." order by id desc limit ".$start.",10";
-                $sql2="select count(*) from ".$req->param()['target'];
+                $start = (string) 10 * ($req->param()['current'] - 1);
+                $sql = "select id,name from " . $req->param()['target'] . " order by id desc limit " . $start . ",10";
+                $sql2 = "select count(*) from " . $req->param()['target'];
                 // dump(Db::query($sql2));
-                return json(['content'=>Db::query($sql),'size'=>Db::query($sql2)[0]['count(*)']]);
+                return json(['content' => Db::query($sql), 'size' => Db::query($sql2)[0]['count(*)']]);
                 // if (!array_search($req->param()['target'], ['product_center', 'product_specification']))
                 //     $list = $list->column('name,id');
                 // else $list = $list->column('name,id,created_at');
@@ -80,11 +80,11 @@ class Index extends Controller
     }
     public function item_curd()
     {
-        dump(Request::instance()->param());
+        $req = Request::instance();
+        if (!array_key_exists('is_from_api', $req->param())) return view('/index');
     }
     public function login()
     {
-
         $req = Request::instance();
         // dump($req->post(false)['username']);
         // dump($req->post('username'));

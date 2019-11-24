@@ -64,7 +64,7 @@ class Index extends Controller
                 // $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10)->select('id name description');
                 // $list=get_model($req->param()['target'], 'where','select * from '
                 $start = (string) 10 * ($req->param()['current'] - 1);
-                $sql = "select id,name from " . $req->param()['target'] . " order by id desc limit " . $start . ",10";
+                $sql = "select id,name from " . $req->param()['target'] . " order by sequence asc,id asc limit " . $start . ",10";
                 $sql2 = "select count(*) from " . $req->param()['target'];
                 // dump(Db::query($sql2));
                 return json(['content' => Db::query($sql), 'size' => Db::query($sql2)[0]['count(*)']]);
@@ -82,6 +82,21 @@ class Index extends Controller
     {
         $req = Request::instance();
         if (!array_key_exists('is_from_api', $req->param())) return view('/index');
+        switch ($req->method()) {
+            case 'GET':
+                if($req->param()['id']=="new_item") return Db::query("select max(sequence) from " . $req->param()['target'] )[0]['max(sequence)']+1;
+                $sql = "select * from " . $req->param()['target'] . " where id= " . $req->param()['id'];
+                $res=Db::query($sql)[0];
+                if(in_array($req->param()['target'] ,["product_center","product_specification"])) 
+                    $res['max']=Db::query("select max(sequence) from " . $req->param()['target'] )[0]['max(sequence)'];
+                return json($res);
+            case 'POST':
+                dump($req->param());
+                exit;
+                $item = get_model($req->param()['target'], '', $req->post());
+                $item->save();
+                return "success";
+        }
     }
     public function login()
     {

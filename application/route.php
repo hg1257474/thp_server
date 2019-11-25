@@ -15,6 +15,7 @@ return [
     ],
     '[admin]' => [
         '/login' => 'admin/index/login',
+        '/image' => 'admin/index/image',
         '/:target/:id' => [
             'admin/index/item_curd', [], ['target' => $target_range]
         ],

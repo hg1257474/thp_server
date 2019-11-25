@@ -96,6 +96,7 @@ body > header li {
     &:after {
       content: '';
       position: absolute;
+      top: 0;
       right: 0;
       border-style: solid;
       border-width: 0 0 98px 15px;

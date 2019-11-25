@@ -22,6 +22,10 @@ aside.indicator {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+  img[usemap='#indicator'] {
+    z-index: 200;
+    position: relative;
+  }
 }
 .pointer,
 .current {
@@ -31,6 +35,10 @@ aside.indicator {
   left: 0;
   top: 0;
   transition: all 1s;
+  z-index: 100;
+}
+.current {
+  z-index: 300;
 }
 @keyframes next-move {
   0% {

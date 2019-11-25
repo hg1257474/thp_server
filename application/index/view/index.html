@@ -42,10 +42,21 @@
     </header>
     <main style="margin-top:0;display:block">
       <aside class="next">
-        <div>滑动查看下一页</div><img src="next.png"/></aside>
 
-      <aside class="indicator"><img src="clock-dial.png"/>
+        <img src="next.png"/></aside>
+
+      <aside class="indicator">
+        <map name="indicator" id="indicator">
+          <area shape="circle" coords="85,30,10" href="#"/>
+          <area shape="circle" coords="35,85,10" href="#"/>
+          <area shape="circle" coords="5,155,10" href="#"/>
+          <area shape="circle" coords="5,225,10" href="#"/>
+          <area shape="circle" coords="35,300,10" href="#"/>
+          <area shape="circle" coords="85,350,10" href="#"/>
+        </map>
         <img class="pointer" style="transform: rotate(92deg)" src="pointer.png"/>
+        <img src="clock-dial.png" usemap="#indicator"/>
+
         <img class="current" style="left:75px;top:25px" src="current.png"/></aside>
       <section >
 
@@ -276,6 +287,14 @@
           return -1; //不是ie浏览器
         }
       }
+      document
+        .querySelectorAll("area")
+        .forEach(function (item, index) {
+          item.onclick = function (e) {
+            e.preventDefault()
+            onWheel(index)
+          }
+        })
       var version = getIEVersion()
       function onWheel(e) {
         var deviceHeight = version == -1
@@ -301,7 +320,10 @@
           }, 1000)
         }
         // 98
-        if (e.deltaY > 0) {
+        if (parseInt(e) >= 0) {
+          current = e + 1
+          main.style.marginTop = -e * deviceHeight + "px"
+        } else if (e.deltaY > 0) {
           if (parseInt(main.style.marginTop) == -5 * deviceHeight) 
             return
           current += 1

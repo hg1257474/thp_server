@@ -36,6 +36,7 @@ function get_model($type, $target, $args)
             else return new GeneralKnowledgeEncyclopedia($args);
     }
 }
+
 class Index extends Controller
 {
     protected $beforeActionList = [
@@ -84,11 +85,11 @@ class Index extends Controller
         if (!array_key_exists('is_from_api', $req->param())) return view('/index');
         switch ($req->method()) {
             case 'GET':
-                if($req->param()['id']=="new_item") return Db::query("select max(sequence) from " . $req->param()['target'] )[0]['max(sequence)']+1;
+                if ($req->param()['id'] == "new_item") return Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'] + 1;
                 $sql = "select * from " . $req->param()['target'] . " where id= " . $req->param()['id'];
-                $res=Db::query($sql)[0];
-                if(in_array($req->param()['target'] ,["product_center","product_specification"])) 
-                    $res['max']=Db::query("select max(sequence) from " . $req->param()['target'] )[0]['max(sequence)'];
+                $res = Db::query($sql)[0];
+                if (in_array($req->param()['target'], ["product_center", "product_specification"]))
+                    $res['max'] = Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'];
                 return json($res);
             case 'POST':
                 dump($req->param());
@@ -126,5 +127,41 @@ class Index extends Controller
         $target = Session::has('id') ? 'product_center' : 'login';
         header('Location:' . $req->domain() . '/admin/' . $target);
         exit;
+    }
+    public function image()
+    {
+        $req = Request::instance();
+        if ($req->header('content-type') == "application/json") {
+            $data = explode(',', $req->post()[0]);
+            preg_match("/^data:.+\/(.+);base64/", $data[0], $file_type);
+            $raw_data = base64_decode($data[1]);
+            $file_name = RUNTIME_PATH . DS . 'temp' . DS . uniqid() . md5($data[1]) . "." . $file_type[1];
+            file_put_contents($file_name, $raw_data);
+            return $file_name;
+        }
+        $file = request()->file('file');
+
+        // 移动到框架应用根目录/public/uploads/ 目录下
+        if ($file) {
+            function getfuck(...$data)
+            {
+                dump($data);
+            }
+            $file_name = RUNTIME_PATH . DS . 'temp';
+
+            $info = $file->rule('date')->move($file_name);
+            if ($info) {
+                // 成功上传后 获取上传信息
+                // 输出 jpg
+                echo $info->getExtension();
+                // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
+                echo $info->getSaveName();
+                // 输出 42a79759f284b767dfcb2a0197904287.jpg
+                echo $info->getFilename();
+            } else {
+                // 上传失败获取错误信息
+                echo $file->getError();
+            }
+        }
     }
 }

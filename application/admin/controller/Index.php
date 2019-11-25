@@ -85,18 +85,24 @@ class Index extends Controller
         if (!array_key_exists('is_from_api', $req->param())) return view('/index');
         switch ($req->method()) {
             case 'GET':
-                if ($req->param()['id'] == "new_item") return Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'] + 1;
+                if ($req->param()['id'] == "new_item") return json(['max'=>Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'] ]);
                 $sql = "select * from " . $req->param()['target'] . " where id= " . $req->param()['id'];
                 $res = Db::query($sql)[0];
                 if (in_array($req->param()['target'], ["product_center", "product_specification"]))
                     $res['max'] = Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'];
                 return json($res);
             case 'POST':
-                dump($req->param());
-                exit;
-                $item = get_model($req->param()['target'], '', $req->post());
-                $item->save();
+                $body=$req->post();
+                $item=get_model($req->param()['target'],'',$body);
+                if (in_array($req->param()['target'], ["product_center", "product_specification"])) {
+                    copy(RUNTIME_PATH . DS . 'temp'.$body['image_url'],ROOT_PATH . DS . 'public'.$body['image_url']);
+                }
+                $item.save();
                 return "success";
+            case 'PUT':
+                dump($req->post());
+                exit;
+
         }
     }
     public function login()
@@ -143,21 +149,14 @@ class Index extends Controller
 
         // 移动到框架应用根目录/public/uploads/ 目录下
         if ($file) {
-            function getfuck(...$data)
-            {
-                dump($data);
-            }
             $file_name = RUNTIME_PATH . DS . 'temp';
 
-            $info = $file->rule('date')->move($file_name);
+            $info = $file->move($file_name);
+
             if ($info) {
                 // 成功上传后 获取上传信息
                 // 输出 jpg
-                echo $info->getExtension();
-                // 输出 20160820/42a79759f284b767dfcb2a0197904287.jpg
-                echo $info->getSaveName();
-                // 输出 42a79759f284b767dfcb2a0197904287.jpg
-                echo $info->getFilename();
+                return $info->getSaveName();
             } else {
                 // 上传失败获取错误信息
                 echo $file->getError();

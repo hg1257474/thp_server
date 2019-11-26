@@ -41,9 +41,8 @@
       </div>
     </header>
     <main style="margin-top:0;display:block">
-      <aside class="next">
 
-        <img src="next.png"/></aside>
+      <img src="next.png" class="next"/>
 
       <aside class="indicator">
         <map name="indicator" id="indicator">
@@ -76,7 +75,7 @@
       碳化硼是最硬的人造磨料之一，硬度仅次于金刚石，其硬度为9.36，研磨效率高，适用于各种硬质合金，宝石等材料的研磨、抛光、钻孔等加工，是金刚石的理想代用材料。
       碳化硼也是工程制品，耐火材料，特殊焊接的主要原料，可制成耐磨焊条、各种高级快速切削刀具和耐磨程度极高的磨具、喷砂嘴、密封环和精密量元件等。
       碳化硼比重2.52g/cm3.熔点2450度，耐高温与碱不起反应，具有吸收中子和半导体导电性质，是制造硼化钛等金属硼化物，硼钢和核工业中子吸收剂等不可缺少的材料。</div>
-          <img class="more" src="index-2-more.png"/>
+          <img class="more" src="index-2-more.png" onclick="window.location='/company_profile'"/>
         </div>
       </section>
       <section>
@@ -94,18 +93,33 @@
               <div>10kg箱装</div>
             </li>
           </ul>
-          <img  src="index-3-more.png"/>
+          <img  src="index-3-more.png" onclick="window.location='/product_center'"/>
         </div>
       </section>
-      <section >
+      <section class="clear-float">
+        <img src="index-4-left.png" class="left"/>
+        <div  class="middle">
+          <img src="index-4-top.png"/>
+          <div class="container">
+            <img  src="index-4-title.png"/>
+            <h4>碳化硼在各行业的的应用</h4>
+            <p>耐火材料、国防工业、工程陶瓷材料、普通工业、电性能应用、作为化学原料的应用、蓝宝石晶片（LED）、军火工业、化工、航空、航天、核工业领域等很多工业中应用。<br/>
+                    碳化硼（boron carbide ），别名黑钻石，分子式为B₄C，通常为灰黑色微粉。是已知最坚硬的三种材料之一（其他两种为金刚石、立方相氮化硼），用于坦克车的装甲、避弹衣和很多工业应用品中。它的摩氏硬度为9.3。</p>
+            <img  src="index-3-more.png" onclick="window.location='/general_knowledge_encyclopedia'"/></div>
+          <img src="index-4-bottom.png"/>
+        </div>
+        <img src="index-4-right.png" class="right"/>
+
+        <!--
         <img src="index-4.png" class="banner"/>
         <div class="container center">
           <img  src="index-4-title.png"/>
           <h4>碳化硼在各行业的的应用</h4>
           <p>耐火材料、国防工业、工程陶瓷材料、普通工业、电性能应用、作为化学原料的应用、蓝宝石晶片（LED）、军火工业、化工、航空、航天、核工业领域等很多工业中应用。<br/>
                     碳化硼（boron carbide ），别名黑钻石，分子式为B₄C，通常为灰黑色微粉。是已知最坚硬的三种材料之一（其他两种为金刚石、立方相氮化硼），用于坦克车的装甲、避弹衣和很多工业应用品中。它的摩氏硬度为9.3。</p>
-          <img  src="index-3-more.png"/>
+          <img  src="index-3-more.png" onclick="window.location='/general_knowledge_encyclopedia'"/>
         </div>
+        -->
       </section>
       <section>
         <img src="index-5.png" class="banner"/>
@@ -141,7 +155,7 @@
 分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
             </li>
           </ul>
-          <img  src="index-3-more.png"/>
+          <img  src="index-3-more.png" onclick="window.location='/news_center'"/>
         </div>
       </section>
       <section>
@@ -169,7 +183,7 @@
           </ul>
         </div>
         <div class="address">
-          <address><img src="Index-6-location.png"/>地 址：黑龙江省牡丹江市爱民区北安路191号</address>
+          <address><img src="index-6-location.png"/>地 址：黑龙江省牡丹江市爱民区北安路191号</address>
         </div>
       </section>
     </main>
@@ -224,7 +238,7 @@
         ]
       ]
       var main = document.querySelector("main")
-      var nextIcon = document.querySelector("aside.next")
+      var nextIcon = document.querySelector("img.next")
       var pointerIcon = document.querySelector(".pointer")
       var currentIcon = document.querySelector(".current")
       var current = 1
@@ -237,7 +251,7 @@
         if (document.querySelector("section:nth-of-type(" + current + ")").className.indexOf("visited") == -1) 
           document
             .querySelector("section:nth-of-type(" + current + ")")
-            .className += "visited"
+            .className += " visited"
         switch (current) {
           case 1:
             document

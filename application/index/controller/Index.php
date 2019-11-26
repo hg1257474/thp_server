@@ -4,6 +4,7 @@ namespace app\index\controller;
 
 use think\Request;
 
+
 class Index
 {
     public function index()
@@ -42,5 +43,17 @@ class Index
     public function company_profile()
     {
         return view("/company_profile");
+    }
+    public function detail()
+    {
+        $req = Request::instance();
+        $name_map = [
+            "product_center" => "产品中心",
+            "product_specification" => "产品规格",
+            "news+_center" => "新闻中心",
+            "honorary_qualification" => "荣誉资质",
+            "general_knowledge_encyclopedia" => "常识百科",
+        ];
+        return view('/detail', ["name" => $name_map[$req->param()['target']]]);
     }
 }

@@ -38,6 +38,7 @@ return [
 
     ],
     '/' => 'index',
+    '/:target/:id' => 'index/detail',
     '/product_center' => 'index/product_center',
     '/news_center' => 'index/news_center',
     '/company_profile' => 'index/company_profile',

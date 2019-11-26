@@ -10,6 +10,7 @@ body > main {
   width: 100%;
   max-width: 1312px;
   display: inline-block;
+  min-height: 100vh;
 }
 
 .banner {

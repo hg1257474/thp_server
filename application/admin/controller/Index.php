@@ -64,7 +64,7 @@ class Index extends Controller
         // $list = Admin::where('id', '<', '10')->paginate(10);
         // dump($list);
         $req = Request::instance();
-        if (!array_key_exists('is_from_api', $req->param())) return view('/index');
+        if (!array_key_exists('is_from_api', $req->param())) return view('/index-template');
         switch ($req->method()) {
             case 'GET':
                 // $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10)->select('id name description');
@@ -85,7 +85,7 @@ class Index extends Controller
     public function item_curd()
     {
         $req = Request::instance();
-        if (!array_key_exists('is_from_api', $req->param())) return view('/index');
+        if (!array_key_exists('is_from_api', $req->param())) return view('/index-template');
         switch ($req->method()) {
             case 'GET':
                 if ($req->param()['id'] == "new_item") return json(['max' => Db::query("select count(*) from " . $req->param()['target'])[0]['count(*)']]);
@@ -157,6 +157,7 @@ class Index extends Controller
     }
     public function login()
     {
+        return "goog";
         $req = Request::instance();
         // dump($req->post(false)['username']);
         // dump($req->post('username'));

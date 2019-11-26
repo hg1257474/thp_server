@@ -23,6 +23,7 @@ return [
             'admin/index/category_curd', [], ['target' => $target_range]
         ],
 
+        '' => 'admin/index/index',
         '__miss__' => 'admin/index/index',
 
 
@@ -46,6 +47,8 @@ return [
     '/general_knowledge_encyclopedia' => 'index/general_knowledge_encyclopedia',
     '/honorary_qualification' => 'index/honorary_qualification',
     '/product_specification' => 'index/product_specification',
+    // '/admin' => 'admin/index/index',
+
     '[hello]'     => [
         ':id'   => ['index/hello', ['method' => 'get'], ['id' => '\d+']],
         ':name' => ['index/hello', ['method' => 'post']],

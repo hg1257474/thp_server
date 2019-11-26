@@ -20,19 +20,24 @@ function get_model($type, $target, $args)
     switch ($type) {
         case 'product_center':
             if ($target == 'where') return ProductCenter::query($args);
+            else if ($target == 'get') return ProductCenter::get($args);
             else return new ProductCenter($args);
         case 'product_specification':
             if ($target == 'where')
                 return ProductSpecification::where(...$args);
+            else if ($target == 'get') return ProductSpecification::get($args);
             else return new ProductSpecification($args);
         case 'news_center':
             if ($target == 'where') return NewsCenter::where(...$args);
+            else if ($target == 'get') return NewsCenter::get($args);
             else return new NewsCenter($args);
         case 'honorary_qualification':
             if ($target == 'where') return HonoraryQualification::where(...$args);
+            else if ($target == 'get') return HonoraryQualification::get($args);
             else return new HonoraryQualification($args);
         case 'general_knowledge_encyclopedia':
             if ($target == 'where') return GeneralKnowledgeEncyclopedia::where(...$args);
+            else if ($target == 'get') return GeneralKnowledgeEncyclopedia::get($args);
             else return new GeneralKnowledgeEncyclopedia($args);
     }
 }
@@ -65,18 +70,16 @@ class Index extends Controller
                 // $list = get_model($req->param()['target'], 'where', ['id', '<', '10'])->order('id desc')->page($req->param()['current'], 10)->select('id name description');
                 // $list=get_model($req->param()['target'], 'where','select * from '
                 $start = (string) 10 * ($req->param()['current'] - 1);
-                $sql = "select id,name from " . $req->param()['target'] . " order by sequence asc,id asc limit " . $start . ",10";
+                if (in_array($req->param()['target'], ["product_center", "product_specification"]))
+                    $sql1 = "select id,name from " . $req->param()['target'] . " order by sequence asc,id asc limit " . $start . ",10";
+                else $sql1 = "select id,name,created_at from " . $req->param()['target'] . " order by created_at desc limit " . $start . ",10";
                 $sql2 = "select count(*) from " . $req->param()['target'];
                 // dump(Db::query($sql2));
-                return json(['content' => Db::query($sql), 'size' => Db::query($sql2)[0]['count(*)']]);
+                return json(['content' => Db::query($sql1), 'size' => Db::query($sql2)[0]['count(*)']]);
                 // if (!array_search($req->param()['target'], ['product_center', 'product_specification']))
                 //     $list = $list->column('name,id');
                 // else $list = $list->column('name,id,created_at');
                 // dump($list);
-            case 'POST':
-                $item = get_model($req->param()['target'], '', $req->post());
-                $item->save();
-                return "success";
         }
     }
     public function item_curd()
@@ -85,24 +88,71 @@ class Index extends Controller
         if (!array_key_exists('is_from_api', $req->param())) return view('/index');
         switch ($req->method()) {
             case 'GET':
-                if ($req->param()['id'] == "new_item") return json(['max'=>Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'] ]);
+                if ($req->param()['id'] == "new_item") return json(['max' => Db::query("select count(*) from " . $req->param()['target'])[0]['count(*)']]);
                 $sql = "select * from " . $req->param()['target'] . " where id= " . $req->param()['id'];
                 $res = Db::query($sql)[0];
                 if (in_array($req->param()['target'], ["product_center", "product_specification"]))
-                    $res['max'] = Db::query("select max(sequence) from " . $req->param()['target'])[0]['max(sequence)'];
+                    $res['max'] = Db::query("select count(*) from " . $req->param()['target'])[0]['count(*)'];
                 return json($res);
             case 'POST':
-                $body=$req->post();
-                $item=get_model($req->param()['target'],'',$body);
+                $body = $req->post();
                 if (in_array($req->param()['target'], ["product_center", "product_specification"])) {
-                    copy(RUNTIME_PATH . DS . 'temp'.$body['image_url'],ROOT_PATH . DS . 'public'.$body['image_url']);
+                    $target_path = ROOT_PATH .  'public' . DS . 'image' . DS . explode(DS, $body['image_uri'])[0];
+                    if (!is_dir($target_path)) mkdir($target_path . DS);
+                    copy(RUNTIME_PATH . DS . 'temp' . DS . $body['image_uri'], ROOT_PATH .  'public' . DS . 'image' . DS . $body['image_uri']);
+                    $body['image_uri'] = str_replace("\\", '/', $body['image_uri']);
                 }
-                $item.save();
+                $item = get_model($req->param()['target'], '', $body);
+                $item->save();
+                if (
+                    in_array($req->param()['target'], ["product_center", "product_specification"]) &&
+                    $exists_item = get_model($req->param()['target'], 'get', ['sequence' => $body['sequence']])
+                ) {
+                    dump($exists_item);
+                    $temp1 = $item->id + 100;
+                    $temp2 = $exists_item->id;
+                    Db::execute("update " . $req->param()['target'] . " set id=" . $temp1 . " where id=" . ($temp1 - 100));
+                    Db::execute("update " . $req->param()['target'] . " set id=" . ($temp1 - 100) . " where id=" . $temp2);
+                    Db::execute("update " . $req->param()['target'] . " set id=" . $temp2 . " where id=" . $temp1);
+                }
                 return "success";
             case 'PUT':
-                dump($req->post());
-                exit;
-
+                $body = $req->post();
+                // $body = get_model('product_center', 'get', ['sequence' => 6]);
+                // dump($body);
+                // exit;
+                if (
+                    in_array($req->param()['target'], ["product_center", "product_specification"]) &&
+                    strstr($body['image_uri'], RUNTIME_PATH . DS . 'temp')
+                ) {
+                    $target_path = ROOT_PATH .  'public' . DS . 'image' . DS . explode(DS, $body['image_uri'])[0];
+                    if (!is_dir($target_path)) mkdir($target_path . DS);
+                    copy(RUNTIME_PATH . DS . 'temp' . DS . $body['image_uri'], ROOT_PATH .  'public' . DS . 'image' . DS . $body['image_uri']);
+                    $body['image_uri'] = str_replace("\\", '/', $body['image_uri']);
+                }
+                $item = get_model($req->param()['target'], 'get', ['id' => $req->param()['id']]);
+                if (
+                    in_array($req->param()['target'], ["product_center", "product_specification"]) &&
+                    $item->sequence != $body['sequence'] &&
+                    $exists_item = get_model($req->param()['target'], 'get', ['sequence' => $body['sequence']])
+                ) {
+                    dump($exists_item);
+                    $temp1 = $item->id + 100;
+                    $temp2 = $exists_item->id;
+                    Db::execute("update " . $req->param()['target'] . " set id=" . $temp1 . " where id=" . ($temp1 - 100));
+                    Db::execute("update " . $req->param()['target'] . " set id=" . ($temp1 - 100) . " where id=" . $temp2);
+                    Db::execute("update " . $req->param()['target'] . " set id=" . $temp2 . " where id=" . $temp1);
+                }
+                $item = get_model($req->param()['target'], '', '');
+                dump($item);
+                dump($body);
+                $body['id'] = $req->param()['id'];
+                $item->saveAll([$body]);
+                return "success";
+            case 'DELETE':
+                $item = get_model($req->param()['target'], 'get', ['id' => $req->param()['id']]);
+                $item->delete();
+                return "success";
         }
     }
     public function login()

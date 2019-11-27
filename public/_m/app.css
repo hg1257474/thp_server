@@ -162,3 +162,26 @@ body > footer dt:nth-of-type(2) {
 body > footer dt:nth-of-type(2):after {
   content: ':';
 }
+
+aside.pagination {
+  margin-top: 0.45rem;
+}
+
+aside.pagination li {
+  display: inline-block;
+}
+
+aside.pagination li.selected,
+aside.pagination li.current button,
+aside.pagination li button:hover {
+  color: white;
+  background: #014684;
+}
+
+aside.pagination li button {
+  border: 1px solid #e5e5e5;
+  padding: 0 0.1rem;
+  cursor: pointer;
+  background: white;
+  line-height: 0.34rem;
+}

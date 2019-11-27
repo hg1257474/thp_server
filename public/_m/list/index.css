@@ -1,4 +1,4 @@
-body > main ul {
+body > main > ul {
   display: inline-block;
   margin: 0 auto;
 }
@@ -47,7 +47,7 @@ body > main h6 {
   margin: 0 0 0.11rem;
 }
 
-body > main li {
+body > main > ul li {
   width: 6.6rem;
   height: 1rem;
   margin-top: 0.3rem;
@@ -57,6 +57,7 @@ body > main li {
 body > main .content {
   float: left;
   font-size: 0.22rem;
+  text-align: left;
   font-family: 'Microsoft YaHei';
   color: #787878;
   line-height: 1.2;
@@ -65,19 +66,19 @@ body > main .content {
   overflow: hidden;
 }
 
-body > main li:nth-of-type(1) {
+body > main > ul li:nth-of-type(1) {
   background: #014684;
 }
 
-body > main li:nth-of-type(1) .content {
+body > main > ul li:nth-of-type(1) .content {
   color: white;
 }
 
-body > main li:nth-of-type(1) h6 {
+body > main > ul li:nth-of-type(1) h6 {
   color: white;
 }
 
-body > main li:nth-of-type(1) .time {
+body > main > ul li:nth-of-type(1) .time {
   background: #dec996;
   color: black;
 }

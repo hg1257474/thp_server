@@ -53,6 +53,15 @@
                 <h4>{$name[1]}</h4>
             </hgroup>
             <ul>
+                <foreach name="list" item="data">
+                    <li class="clear-float" onclick="location=location.pathname+'/{$data.id}'">
+                        <div class="time">
+                            <div>{:explode('-',explode(' ',$data.created_at)[0])[2]}</div>{:explode('-',explode(' ',$data.created_at)[0])[0]}-{:explode('-',explode(' ',$data.created_at)[0])[1]}</div>
+                        <h6>{$data.name}</h6>
+                        <div class="content">{$data.description}</div>
+                    </li>
+                </foreach>
+                <!--
                 <li class="clear-float">
                     <div class="time">
                         <div>10</div>2019-10</div>
@@ -81,7 +90,29 @@
                     <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
 分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
                 </li>
+                -->
             </ul>
+            <aside class="pagination">
+                <nav>
+                    <ul class="clear-float">
+                        <neq name="current" value="1">
+                            <li>
+                                <button onclick="location=location.pathname+'?current={$current-1}'">上一页</button>
+                            </li>
+                        </neq>
+                        <foreach name="pages" item="data">
+                            <li class="{$current==$data?'current':''}">
+                                <button onclick="location=location.pathname+'?current={$data}'">{$data}</button>
+                            </li>
+                        </foreach>
+                        <neq name="is_last" value="true">
+                            <li>
+                                <button onclick="location=location.pathname+'?current={$current+1}'"> 下一页</button>
+                            </li>
+                        </neq>
+                    </ul>
+                </nav>
+            </aside>
         </main>
         <footer>
             <img src="/image/phone-number.png"/>

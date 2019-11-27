@@ -123,8 +123,9 @@ class Index extends Controller
                 // exit;
                 if (
                     in_array($req->param()['target'], ["product_center", "product_specification"]) &&
-                    strstr($body['image_uri'], RUNTIME_PATH . DS . 'temp')
+                    file_exists(RUNTIME_PATH . DS . 'temp' . DS . $body['image_uri'])
                 ) {
+                    dump("11");
                     $target_path = ROOT_PATH .  'public' . DS . 'image' . DS . explode(DS, $body['image_uri'])[0];
                     if (!is_dir($target_path)) mkdir($target_path . DS);
                     copy(RUNTIME_PATH . DS . 'temp' . DS . $body['image_uri'], ROOT_PATH .  'public' . DS . 'image' . DS . $body['image_uri']);
@@ -136,7 +137,8 @@ class Index extends Controller
                     $item->sequence != $body['sequence'] &&
                     $exists_item = get_model($req->param()['target'], 'get', ['sequence' => $body['sequence']])
                 ) {
-                    dump($exists_item);
+                    dump("22");
+                    // dump($exists_item);
                     $temp1 = $item->id + 100;
                     $temp2 = $exists_item->id;
                     Db::execute("update " . $req->param()['target'] . " set id=" . $temp1 . " where id=" . ($temp1 - 100));
@@ -144,8 +146,8 @@ class Index extends Controller
                     Db::execute("update " . $req->param()['target'] . " set id=" . $temp2 . " where id=" . $temp1);
                 }
                 $item = get_model($req->param()['target'], '', '');
-                dump($item);
-                dump($body);
+                // dump($item);
+                // dump($body);
                 $body['id'] = $req->param()['id'];
                 $item->saveAll([$body]);
                 return "success";

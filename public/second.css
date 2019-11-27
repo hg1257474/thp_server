@@ -65,6 +65,7 @@ hgroup h5 {
 }
 
 .pagination li.selected,
+.pagination li.current button,
 .pagination li button:hover {
   color: white;
   background: #014684;

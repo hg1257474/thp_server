@@ -53,6 +53,17 @@
                     <div class="router">位置: {$name[0]}</div>
                 </header>
                 <ul class="clear-float">
+                    <foreach name="list" item="data">
+                        <li class="clear-float" onclick="window.location=location.pathname+'/{$data.id}'">
+                            <article>
+                                <div class="time">
+                                    <div>{:explode('-',explode(' ',$data.created_at)[0])[2]}</div>{:explode('-',explode(' ',$data.created_at)[0])[0]}-{:explode('-',explode(' ',$data.created_at)[0])[1]}</div>
+                                <h5>{$data.name}</h5>
+                                <main>{$data.description}</main>
+                            </article>
+                        </li>
+                    </foreach>
+                    <!--
                     <li class="clear-float">
                         <article>
                             <div class="time">
@@ -143,26 +154,26 @@
 分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</main>
                         </article>
                     </li>
-
+-->
                 </ul>
                 <aside class="pagination">
                     <nav>
                         <ul>
-                            <li>
-                                <button>上一页</button>
-                            </li>
-                            <li>
-                                <button>1</button>
-                            </li>
-                            <li>
-                                <button>2</button>
-                            </li>
-                            <li>
-                                <button>3</button>
-                            </li>
-                            <li>
-                                <button>下一页</button>
-                            </li>
+                            <neq name="current" value="1">
+                                <li>
+                                    <button onclick="location=location.pathname+'?current={$current-1}'">上一页</button>
+                                </li>
+                            </neq>
+                            <foreach name="pages" item="data">
+                                <li class="{$current==$data?'current':''}">
+                                    <button onclick="location=location.pathname+'?current={$data}'">{$data}</button>
+                                </li>
+                            </foreach>
+                            <neq name="is_last" value="true">
+                                <li>
+                                    <button onclick="location=location.pathname+'?current={$current+1}'"> 下一页</button>
+                                </li>
+                            </neq>
                         </ul>
                     </nav>
                 </aside>

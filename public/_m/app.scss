@@ -151,3 +151,28 @@ body > footer {
     content: ':';
   }
 }
+aside.pagination {
+  margin-top: 0.45rem;
+  li {
+    // font-size: 0.28rem;
+    // width: auto;
+    // height: auto;
+    // padding: 0;
+    // background: white;
+    &.selected,
+    &.current button,
+    button:hover {
+      color: white;
+      background: #014684;
+    }
+    button {
+      border: 1px solid #e5e5e5;
+      padding: 0 0.1rem;
+
+      cursor: pointer;
+      background: white;
+      line-height: 0.34rem;
+    }
+    display: inline-block;
+  }
+}

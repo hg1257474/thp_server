@@ -29,6 +29,7 @@ return [
 
     ],
     '[m]' => [
+        '/:target/:id' => 'm/index/detail',
         '/product_center' => 'm/index/product_center',
         '/company_profile' => 'm/index/company_profile',
         '/general_knowledge_encyclopedia' => 'm/index/general_knowledge_encyclopedia',

@@ -53,6 +53,12 @@
                 <h4>{$name[1]}</h4>
             </hgroup>
             <ul class="clear-float">
+                <foreach name="list" item="data">
+                    <li onclick="location=location.pathname+'/{$data.id}'"><img src="/image/{$data.image_uri}"/>
+                        <div>{$data.name}</div>
+                    </li>
+                </foreach>
+                <!--
                 <li><img src="product.png"/>
                     <div>10kg箱装</div>
                 </li>
@@ -71,7 +77,29 @@
                 <li><img src="product.png"/>
                     <div>10kg箱装</div>
                 </li>
+                -->
             </ul>
+            <aside class="pagination">
+                <nav>
+                    <ul class="clear-float">
+                        <neq name="current" value="1">
+                            <li>
+                                <button onclick="location=location.pathname+'?current={$current-1}'">上一页</button>
+                            </li>
+                        </neq>
+                        <foreach name="pages" item="data">
+                            <li class="{$current==$data?'current':''}">
+                                <button onclick="location=location.pathname+'?current={$data}'">{$data}</button>
+                            </li>
+                        </foreach>
+                        <neq name="is_last" value="true">
+                            <li>
+                                <button onclick="location=location.pathname+'?current={$current+1}'"> 下一页</button>
+                            </li>
+                        </neq>
+                    </ul>
+                </nav>
+            </aside>
         </main>
         <footer>
             <img src="/image/phone-number.png"/>

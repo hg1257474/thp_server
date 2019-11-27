@@ -45,6 +45,7 @@ body > main > div > ul main {
   width: 434px;
   height: 3.6em;
   overflow: hidden;
+  text-align: left;
 }
 
 body > main > div > ul .newest,

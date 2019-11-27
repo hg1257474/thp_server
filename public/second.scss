@@ -50,6 +50,7 @@ hgroup {
   margin-top: 45px;
   li {
     &.selected,
+    &.current button,
     button:hover {
       color: white;
       background: #014684;

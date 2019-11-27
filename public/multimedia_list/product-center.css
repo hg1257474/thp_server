@@ -16,6 +16,11 @@ article ul {
   margin-top: 45px;
 }
 
+figure img {
+  width: 363px;
+  height: 265px;
+}
+
 .pagination {
   margin-top: 45px;
 }

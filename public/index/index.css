@@ -192,6 +192,11 @@ section:nth-of-type(3) li:nth-of-type(n + 3) {
   transition: all 1s 1s;
 }
 
+section:nth-of-type(3) li img {
+  width: 361px;
+  height: 266px;
+}
+
 section:nth-of-type(3) li div {
   line-height: 50px;
   font-size: 14px;
@@ -325,6 +330,7 @@ section:nth-of-type(5) li:nth-of-type(n + 4) {
 
 section:nth-of-type(5) .content {
   float: left;
+  text-align: left;
   font-size: 14px;
   font-family: 'Microsoft YaHei';
   color: #737373;

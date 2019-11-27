@@ -61,14 +61,20 @@
       碳化硼是最硬的人造磨料之一，硬度仅次于金刚石，其硬度为9.36，研磨效率高，适用于各种硬质合金，宝石等材料的研磨、抛光、钻孔等加工，是金刚石的理想代用材料。
       碳化硼也是工程制品，耐火材料，特殊焊接的主要原料，可制成耐磨焊条、各种高级快速切削刀具和耐磨程度极高的磨具、喷砂嘴、密封环和精密量元件等。
       碳化硼比重2.52g/cm3.熔点2450度，耐高温与碱不起反应，具有吸收中子和半导体导电性质，是制造硼化钛等金属硼化物，硼钢和核工业中子吸收剂等不可缺少的材料。</p>
-                <button class="more">查看更多</button>
+                <button class="more" onclick="location='/m/company_profile'">查看更多</button>
             </section>
             <section>
                 <hgroup>
-                    <h3>公司简介</h3>
-                    <h4>Company Profile</h4>
+                    <h3>产品中心</h3>
+                    <h4>Product Center</h4>
                 </hgroup>
                 <ul class="clear-float">
+                    <foreach name="product_centers" item="data">
+                        <li onclick="location='/m/product_center/{$data.id}'"><img src="/image/{$data.image_uri}"/>
+                            <div>{$data.name}</div>
+                        </li>
+                    </foreach>
+                    <!--
                     <li><img src="product.png"/>
                         <div>10kg箱装</div>
                     </li>
@@ -87,8 +93,9 @@
                     <li><img src="product.png"/>
                         <div>10kg箱装</div>
                     </li>
+                    -->
                 </ul>
-                <button class="more">查看更多</button>
+                <button class="more" onclick="location='/m/product_center'">查看更多</button>
             </section>
             <section>
                 <hgroup>
@@ -100,12 +107,10 @@
                     <img src="s3-left-bottom.png"/>
                     <img src="s3-right.png"/>
                 </div>
-                <h6>碳化硼在各行业的的应用</h6>
-                <main>
-                       耐火材料、国防工业、工程陶瓷材料、普通工业、电性能应用、作为化学原料的应用、蓝宝石晶片（LED）、军火工业、化工、航空、航天、核工业领域等很多工业中应用。
-       碳化硼（boron carbide ），别名黑钻石，分子式为B₄C，通常为灰黑色微粉。是已知最坚硬的三种材料之一
-（其他两种为金刚石、立方相氮化硼），用于坦克车的装甲、避弹衣和很多工业应用品中。它的摩氏硬度为9.3。</main>
-                <button class="more">查看更多</button>
+
+                <h6>{$general_knowledge_encyclopedia.name}</h6>
+                <main>{$general_knowledge_encyclopedia.description}</main>
+                <button class="more" onclick="location='/m/general_knowledge_encyclopedia'">查看更多</button>
             </section>
             <section>
                 <hgroup>
@@ -113,6 +118,15 @@
                     <h4>News Center</h4>
                 </hgroup>
                 <ul>
+                    <foreach name="news_centers" item="data">
+                        <li class="clear-float" onclick="location='/m/news_center/{$data.id}'">
+                            <div class="time">
+                                <div>{:explode('-',explode(' ',$data.created_at)[0])[2]}</div>{:explode('-',explode(' ',$data.created_at)[0])[0]}-{:explode('-',explode(' ',$data.created_at)[0])[1]}</div>
+                            <h6>{$data.name}</h6>
+                            <div class="content">{$data.description}</div>
+                        </li>
+                    </foreach>
+                    <!--
                     <li class="clear-float">
                         <div class="time">
                             <div>10</div>2019-10</div>
@@ -141,8 +155,9 @@
                         <div class="content">碳化硼主要用于含碳耐火材料中起抗氧化作用可以使产品致密化阻止含碳耐火材料中碳的氧化同时在℃～℃的时候，与发生反应，生成的柱状晶体，
 分布在耐火材料的基质和间隙里，从而降低气孔率，提高中温强度，且生成的晶体，体积膨胀，可愈合体积收缩，减少裂纹。</div>
                     </li>
+                    -->
                 </ul>
-                <button class="more">查看更多</button>
+                <button class="more" onclick="location='/m/news_center'">查看更多</button>
             </section>
         </main>
         <footer>

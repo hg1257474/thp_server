@@ -54,6 +54,16 @@
                 </header>
                 <article class="clear-float">
                     <ul>
+                        <foreach name="list" item="data">
+                            <li>
+                                <a href="{$Request.path}/{$data.id}">
+                                    <figure><img src="/image/{$data.image_uri}"/>
+                                        <figcaption>{$data.name}</figcaption>
+                                    </figure>
+                                </a>
+                            </li>
+                        </foreach>
+                        <!--
                         <li>
                             <a href="dsdasdasd">
                                 <figure><img src="product.png"/>
@@ -96,26 +106,27 @@
                                 </figure>
                             </a>
                         </li>
+                        -->
                     </ul>
                 </article>
                 <aside class="pagination">
                     <nav>
                         <ul>
-                            <li>
-                                <button>上一页</button>
-                            </li>
-                            <li>
-                                <button>1</button>
-                            </li>
-                            <li>
-                                <button>2</button>
-                            </li>
-                            <li>
-                                <button>3</button>
-                            </li>
-                            <li>
-                                <button>下一页</button>
-                            </li>
+                            <neq name="current" value="1">
+                                <li>
+                                    <button onclick="location=location.pathname+'?current={$current-1}'">上一页</button>
+                                </li>
+                            </neq>
+                            <foreach name="pages" item="data">
+                                <li class="{$current==$data?'current':''}">
+                                    <button onclick="location=location.pathname+'?current={$data}'">{$data}</button>
+                                </li>
+                            </foreach>
+                            <neq name="is_last" value="true">
+                                <li>
+                                    <button onclick="location=location.pathname+'?current={$current+1}'"> 下一页</button>
+                                </li>
+                            </neq>
                         </ul>
                     </nav>
                 </aside>

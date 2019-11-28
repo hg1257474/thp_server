@@ -1,6 +1,12 @@
 li {
   list-style: none;
 }
+* {
+  outline: none;
+}
+img {
+  border: 0;
+}
 a {
   text-decoration: none;
   color: black;

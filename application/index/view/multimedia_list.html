@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
     <head>
         <base href="{$Request.domain}/{$dir}"/>
@@ -56,7 +57,7 @@
                     <ul>
                         <foreach name="list" item="data">
                             <li>
-                                <a href="{$Request.path}/{$data.id}">
+                                <a href="/{$Request.path}/{$data.id}" >
                                     <figure><img src="/image/{$data.image_uri}"/>
                                         <figcaption>{$data.name}</figcaption>
                                     </figure>

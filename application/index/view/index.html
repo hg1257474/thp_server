@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <base href="{$Request.domain}/index/"/>
@@ -42,7 +43,7 @@
     </header>
     <main style="margin-top:0;display:block">
 
-      <img src="next.png" class="next"/>
+      <aside class="next"><img src="next.png"/></aside>
 
       <aside class="indicator">
         <map name="indicator" id="indicator">
@@ -260,14 +261,14 @@
         ]
       ]
       var main = document.querySelector("main")
-      var nextIcon = document.querySelector("img.next")
+      var nextIcon = document.querySelector("aside.next")
       var pointerIcon = document.querySelector(".pointer")
       var currentIcon = document.querySelector(".current")
       var current = 1
       var duration = false
       function showTransition() {
-        console.log("current")
-        console.log(current)
+        //console.log("current")
+        //console.log(current)
         if (hasVisited[current]) 
           return
         if (document.querySelector("section:nth-of-type(" + current + ")").className.indexOf("visited") == -1) 
@@ -323,29 +324,35 @@
           return -1; //不是ie浏览器
         }
       }
-      document
-        .querySelectorAll("area")
-        .forEach(function (item, index) {
-          item.onclick = function (e) {
-            e.preventDefault()
-            onWheel(index)
-          }
-        })
+      var lists = document.querySelectorAll("area");
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ].forEach(function (index) {
+        console.log(index)
+        lists[index].onclick = function (e) {
+          console.log(index)
+          e.preventDefault()
+          onWheel(index)
+        }
+      })
       var version = getIEVersion()
       function onWheel(e) {
+        console.log(e)
         var deviceHeight = version == -1
           ? window.innerHeight
-          : document
-          .documentElement
-          .clientHeight
-          console
-          .log(version)
+          : document.documentElement.clientHeight
+        //console.log(version)
         if (duration) 
           return
         else {
           duration = true
           setTimeout(function () {
-            console.log(hasVisited)
+            //console.log(hasVisited)
             var style = indicatorStyle[current]
             currentIcon.style.left = style[1][0] + "px"
             currentIcon.style.top = style[1][1] + "px"
@@ -357,6 +364,7 @@
         }
         // 98
         if (parseInt(e) >= 0) {
+          console.log(e)
           current = e + 1
           main.style.marginTop = -e * deviceHeight + "px"
         } else if (e.deltaY > 0) {
@@ -370,11 +378,14 @@
           current -= 1
           main.style.marginTop = (parseInt(main.style.marginTop) + deviceHeight) + "px"
         }
-        pointerIcon.setAttribute("style", "transform:rotate(" + indicatorStyle[current][0] + "deg)")
+        console.log(current)
+        //pointerIcon.setAttribute("style", "transform:rotate(" + indicatorStyle[current][0] + "deg)")
+        console.log(indicatorStyle[current][0])
+        pointerIcon.style.transform = "rotate(" + indicatorStyle[current][0] + "deg)"
         nextIcon.style.display = "none"
+        console.log(current)
       }
       window.onload = showTransition
-
       if (version != -1) 
         window.addEventListener("wheel", onWheel)
       else 

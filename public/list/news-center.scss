@@ -22,6 +22,9 @@ body > main > div > ul {
     font-family: 'Microsoft YaHei';
     color: rgb(55, 55, 55);
     font-weight: bold;
+    max-width: 420px;
+    overflow: hidden;
+    height: 1.2em;
     float: left;
 
     margin: 0 0 11px;

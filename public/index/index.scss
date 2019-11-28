@@ -15,7 +15,9 @@ body {
   margin: auto;
   text-align: center;
   z-index: 100;
-  animation: 1s infinite next-move linear;
+  img {
+    animation: 1s infinite next-move linear;
+  }
 }
 aside.indicator {
   position: fixed;
@@ -281,7 +283,9 @@ section:nth-of-type(5) {
     color: rgb(55, 55, 55);
     font-weight: bold;
     float: left;
-
+    max-width: 420px;
+    overflow: hidden;
+    height: 1.2em;
     margin: 0 0 11px;
   }
 

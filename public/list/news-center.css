@@ -24,6 +24,9 @@ body > main > div > ul h5 {
   font-family: 'Microsoft YaHei';
   color: #373737;
   font-weight: bold;
+  max-width: 420px;
+  overflow: hidden;
+  height: 1.2em;
   float: left;
   margin: 0 0 11px;
 }

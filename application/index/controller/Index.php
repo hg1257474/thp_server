@@ -32,7 +32,7 @@ class Index
             "name" => ["产品中心", "PRODUCT CENTER"], "dir" => "multimedia_list/",
             "current" => $current,
             "list" => $list, "is_last" => $is_last,
-            "pages" => range(1, floor($total / 6) + 1)
+            "pages" => range(1, floor(($total - 1) / 6) + 1)
         ]);
     }
     public function product_specification()
@@ -47,7 +47,7 @@ class Index
             "name" => ["产品规格", "PRODUCT SPECIFICATION"], "dir" => "multimedia_list/",
             "current" => $current,
             "list" => $list, "is_last" => $is_last,
-            "pages" => range(1, floor($total / 6) + 1)
+            "pages" => range(1, floor(($total - 1) / 6) + 1)
         ]);
     }
     public function contact_us()
@@ -71,7 +71,7 @@ class Index
             "name" => ["新闻中心", "NEWS CENTER"], "dir" => "list/",
             "current" => $current,
             "list" => $list, "is_last" => $is_last,
-            "pages" => range(1, floor($total / 10) + 1)
+            "pages" => range(1, floor(($total - 1) / 10) + 1)
         ]);
     }
     public function honorary_qualification()
@@ -85,7 +85,7 @@ class Index
             "name" => ["荣誉资质", "HONORARY QUALIFICATION"], "dir" => "list/",
             "current" => $current,
             "list" => $list, "is_last" => $is_last,
-            "pages" => range(1, floor($total / 10) + 1)
+            "pages" => range(1, floor(($total - 1) / 10) + 1)
         ]);
     }
     public function general_knowledge_encyclopedia()
@@ -100,7 +100,7 @@ class Index
             "name" => ["常识百科", "GENERAL KNOWLEDGE ENCYCLOPEDIA"], "dir" => "list/",
             "current" => $current,
             "list" => $list, "is_last" => $is_last,
-            "pages" => range(1, floor($total / 10) + 1)
+            "pages" => range(1, floor(($total - 1) / 10) + 1)
         ]);
     }
     public function company_profile()

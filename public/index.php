@@ -11,6 +11,7 @@
 
 // [ 应用入口文件 ]
 
+// phpinfo();
 // 定义应用目录
 // define('APP_PATH', dirname(dirname(__FILE__)) . '/myfolder/thp-server/application/');
 define('APP_PATH', __DIR__ . '/../application/');

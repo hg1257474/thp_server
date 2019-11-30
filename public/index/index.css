@@ -215,6 +215,19 @@ section:nth-of-type(4) .right {
 section:nth-of-type(4) .middle {
   width: 38.5%;
   float: left;
+  height: 100%;
+}
+
+section:nth-of-type(4) .middle > *:nth-child(1) {
+  height: 38.56%;
+}
+
+section:nth-of-type(4) .middle > *:nth-child(2) {
+  height: 37.84%;
+}
+
+section:nth-of-type(4) .middle > *:nth-child(3) {
+  height: 23.7%;
 }
 
 section:nth-of-type(4) .middle > img {
@@ -235,6 +248,11 @@ section:nth-of-type(4) .container {
   padding: 10px 20px;
   transition: all 1s;
   opacity: 0;
+}
+
+section:nth-of-type(4) .container > p {
+  height: 50%;
+  overflow: hidden;
 }
 
 section:nth-of-type(4) h4 {

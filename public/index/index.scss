@@ -201,7 +201,17 @@ section:nth-of-type(4) {
   .middle {
     width: 38.5%;
     float: left;
-    > img {
+    height: 100%;
+    & > *:nth-child(1) {
+      height: 38.56%;
+    }
+    & > *:nth-child(2) {
+      height: 37.84%;
+    }
+    & > *:nth-child(3) {
+      height: 23.7%;
+    }
+    & > img {
       width: 100%;
     }
   }
@@ -224,6 +234,10 @@ section:nth-of-type(4) {
     // transform: translate(-50%, -50%);
     transition: all 1s;
     opacity: 0;
+    & > p {
+      height: 50%;
+      overflow: hidden;
+    }
   }
 
   h4 {
